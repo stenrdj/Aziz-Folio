@@ -46,8 +46,8 @@ echo $client[0]; ?></p>
 		$post_tags = get_the_tags();
 if ( $post_tags ) {
     foreach( $post_tags as $tag ) {
-    echo "<i class='devicon-$tag->name-plain '></i>"; 
-    }
+    echo "<i class='devicon-".strtolower($tag->name)."-plain '></i>"; 
+        }
 }
 ?></p>
 <p><b>Responsive:</b> <?php 
