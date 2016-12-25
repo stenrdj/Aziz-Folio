@@ -75,8 +75,8 @@ class Projects_Widget extends WP_Widget {
 			'posts_per_page'      => $number,
 			'orderby'=>'rand'
 		) );
-			echo '<div class="columns project-item has-text-centered">';
 		if ( $query->have_posts() ) :
+			echo '<div class="columns project-item is-mobile">';
 
 		
 			while ( $query->have_posts() ) : $query->the_post();
@@ -95,9 +95,9 @@ class Projects_Widget extends WP_Widget {
                              <?php
 			endwhile;
 					wp_reset_postdata();
+	echo '</div>';
 
 		endif;
-	echo '</div>';
 		// After widget tag
 		echo $args['after_widget'];
 
