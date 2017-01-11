@@ -26,7 +26,7 @@ Websites & Web apps.</h2>
                             <h2 class="title is-5 has-text-centered" style="color:#2980B9">A few Selected PROJECTS</h2>
 
                             <!-- Start Showing randome projects!-->
-                             <div class="columns project-item is-mobile">
+                             <div class="columns project-item is-desktop">
                            <?php remove_all_filters('posts_orderby'); $args=array('post_type'=>'projects', 'orderby'=>'rand', 'posts_per_page'=>'4'); $projects=new WP_Query($args); while ($projects->have_posts()) : $projects->the_post(); ?> 
                             <!-- Loop projects!-->
                             <aside class="column">

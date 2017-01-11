@@ -86,7 +86,7 @@ class Projects_Widget extends WP_Widget {
 			
 	
                                     <figure class="image">
-         
+          <a href="<?php the_permalink() ?>">
                                        <?php if ( has_post_thumbnail()) : the_post_thumbnail(array(350,700)); else :?> <img src="http://placehold.it/200x200 "/><?php endif; ?>
                                         <p><?php the_title(); ?></p>
                                        </a>

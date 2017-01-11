@@ -37,7 +37,7 @@ get_header(); ?>
   </header>
     <aside>
     <h3>About the Project:</h3>
-    <?php the_content(); ?><br>
+    <?php the_content(); ?>
     <h3> Short Details</h3>
 
 <p><b>Client:</b> <?php 
@@ -47,7 +47,7 @@ echo $client[0]; ?></p>
 if ( $post_tags ) {
     foreach( $post_tags as $tag ) {
     echo "<i class='devicon-".strtolower($tag->name)."-plain '></i>"; 
-        }
+    }
 }
 ?></p>
 <p><b>Responsive:</b> <?php 

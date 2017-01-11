@@ -1,4 +1,5 @@
- @import url('https://fonts.googleapis.com/css?family=Gentium+Basic|PT+Sans');
+@import url('https://fonts.googleapis.com/css?family=Gentium+Basic|PT+Sans');
+
 header {
   background-color: #FDFDFD;
 }
@@ -127,8 +128,6 @@ header {
 
     &:nth-child(3) a {
       border-color: #27ae60;
-    } 
-    &:nth-child(4) a {
       border-color: #2980B9;
     }
   }
@@ -202,7 +201,8 @@ header {
         max-height: unset !important;
         height: unset !important;
         max-width: unset !important;
-        margin-left: -50%;
+        margin-left: -40%;
+        margin-top: -20%;
       }
 
       p {
@@ -434,12 +434,16 @@ h1 a {
 
   p {
     padding-top: 11px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .column {
     background: #fff;
     margin: 10px;
     padding: unset;
+    max-height: 290px;
   }
 
   figure {
@@ -447,7 +451,7 @@ h1 a {
     margin: unset;
 
     img {
-      width: auto;
+      width: 100%;
       max-width: 100%;
       height: 100%;
     }
@@ -490,8 +494,9 @@ h1 a {
   }
 
   figure a p {
-    top: 40%;
+    top: 29%;
     font-size: 20px;
+    text-align: center;
   }
 }
 

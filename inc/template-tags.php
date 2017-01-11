@@ -110,16 +110,14 @@ function azizfolio_category_transient_flusher() {
 add_action( 'edit_category', 'azizfolio_category_transient_flusher' );
 add_action( 'save_post',     'azizfolio_category_transient_flusher' );
 // add the title separator
-register_taxonomy('portfolio_category', 'projects', array('hierarchical' => true, 'label' => 'Portfolio Categories', 'singular_name' => 'category', "rewrite" => array(
-                'slug'                       => 'projects/category'
-        ), "query_var" => true));
+register_taxonomy('portfolio_category', 'projects', array('hierarchical' => true, 'label' => 'Portfolio Categories', 'singular_name' => 'category', "rewrite" => array('slug'=> 'projects/category','with_front'=> false), "query_var" => true));
 // Register Custom Post Type
 function projects() {
 
 	$labels = array(
-		'name'                  => 'projects',
-		'singular_name'         => 'projects',
-		'menu_name'             => 'projects',
+		'name'                  => 'Projects',
+		'singular_name'         => 'Projects',
+		'menu_name'             => 'Projects',
 		'name_admin_bar'        => 'Projects',
 		'parent_item_colon'     => 'Parent Item:',
 		'all_items'             => 'All Items',
@@ -142,12 +140,7 @@ function projects() {
 		'items_list_navigation' => 'Items list navigation',
 		'filter_items_list'     => 'Filter items list',
 	);
-	$rewrite = array(
-		'slug'                  => 'projects',
-		'with_front'            => true,
-		'pages'                 => true,
-		'feeds'                 => true,
-	);
+
 
 	$args = array(
 		'label'                 => 'projects',
@@ -168,6 +161,9 @@ function projects() {
 		'has_archive'           => true,		
 		'exclude_from_search'   => false,
 		'publicly_queryable'    => true,
+		'rewrite'    => array(
+				'slug'                  => 'projects',
+				'with_front'            => false),
 		'capability_type'       => 'page',
 		'query_var' => true,
 		'supports' => array('title','editor','excerpt','custom-fields','comments','revisions','thumbnail','author','page-attributes')
@@ -175,7 +171,7 @@ function projects() {
 	register_post_type( 'projects', $args );
 	
 }
-add_action( 'init', 'projects', 0 );
+add_action( 'init', 'projects', 5 );
 
 
 // Register Navigation Menus
@@ -193,28 +189,10 @@ add_action( 'init', 'custom_navigation_menus' );
 // Mark the post type as selected whene a taxonomy or singel page visited. 
 // Exemple : visite -> cats/3 -> projects in meny will be marked and selected
 
-  add_action('nav_menu_css_class', 'add_current_nav_class', 10, 2 );
-	
-	function add_current_nav_class($classes, $item) {
-		
-		// Getting the current post details
-		global $post;
-		
-		// Getting the post type of the current post
-		$current_post_type = get_post_type_object(get_post_type($post->ID));
-		$current_post_type_slug = $current_post_type->rewrite[slug];
-			
-		// Getting the URL of the menu item
-		$menu_slug = strtolower(trim($item->url));
-		
-		// If the menu item URL contains the current post types slug add the current-menu-item class
-		if (strpos($menu_slug,$current_post_type_slug) !== false) {
-		
-		   $classes[] = 'current-menu-item';
-		
-		}
-		
-		// Return the corrected set of classes to be added to the menu item
-		return $classes;
-	
-}
+function custom_active_item_classes($classes = array(), $menu_item = false){            
+        global $post;
+        $classes[] = ($menu_item->url == get_post_type_archive_link($post->post_type)) ? 'current-menu-item  current_page_item' : '';
+        return $classes;
+    }
+add_filter( 'nav_menu_css_class', 'custom_active_item_classes', 10, 2 );
+
